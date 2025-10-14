@@ -10,23 +10,18 @@ services:
     image: postgres:13
     volumes:
       - pg_data:/var/lib/postgresql/data
-    env_file:
-      - .env
   backend:
     image: sadons/kittygram_backend
-    env_file: .env
     volumes:
       - static:/backend_static
       - media:/media
   frontend:
-    env_file: .env
     image: sadons/kittygram_frontend
     command: cp -r /app/build/. /static/
     volumes:
       - static:/static
   gateway:
     image: sadons/kittygram_gateway
-    env_file: .env
     ports:
       - 9000:80
     volumes:
