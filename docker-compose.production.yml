@@ -7,9 +7,11 @@ volumes:
 
 services:
   db:
-    image: postgres:13.10
+    image: postgres:13
     volumes:
       - pg_data:/var/lib/postgresql/data
+    env_file:
+      - .env
   backend:
     image: sadons/kittygram_backend
     volumes:
